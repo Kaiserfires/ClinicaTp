@@ -6,13 +6,5 @@ import { BienvenidaComponent } from './componentes/bienvenida/bienvenida.compone
 import { ErrorComponent } from './componentes/error/error.component';
 
 export const routes: Routes = [
-    {path:'principal',component:PrincipalComponent,
-        children:[
-            {path:'',component:LoginComponent},
-            {path:'registro',component:RegistroComponent},
-            {path:'bienvenida',component:BienvenidaComponent}
-        ]
-    },
-    {path:'',redirectTo:'principal',pathMatch:'full'},
-    {path:'**',component:ErrorComponent}
+    {path:'**',component:PrincipalComponent}
 ];
