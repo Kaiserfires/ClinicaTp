@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../entidades/user';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,19 +16,20 @@ export class UsuarioService {
     this.listaUsuario = this.listaUsuario.filter(user => user.Nombre!== '');
   }
   
-   public mostrarApi(){
+   public mostrarApi():Observable<any>{
     return this.http.get(this.APIURL + "/pruebajson");
   }
 
-  public loginEnApi(Usuario:User) {
-    return this.http.post(this.APIURL + "/login",Usuario);
+  public loginEnApi(Usuario:User):Observable<User> {
+    return this.http.post<User>(this.APIURL + "/login",Usuario);
   }
 
-  public setLogueadoXApi(usuario:User){
+  public setLogueadoXApi(usuario:User):void{
     this.usuarioLogueado = usuario;
+    localStorage.setItem('usuarioLogueado',JSON.stringify(usuario));
   }
 
-  public registrar(usuario:User){
+  public registrar(usuario:User):Observable<any>{
     return this.http.post(this.APIURL + "/insertar",usuario);
   }
 
@@ -45,5 +47,9 @@ export class UsuarioService {
     }
   }
 
+  public logout() {
+    this.usuarioLogueado = { Nombre: '', Apellido: '', Password: '', Usuario: '', mail: '', especialidad: '', nacimiento: new Date(), Usuario_tipo: '' };
+    localStorage.removeItem('usuarioLogueado');
+  }
 
 }

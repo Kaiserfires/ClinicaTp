@@ -29,8 +29,9 @@ export class LoginComponent {
           this.usuarioservices.setLogueadoXApi(<User>x);
           this.route.navigateByUrl('/principal/bienvenida/');
         }
-      }
-    )
+      },
+      error=>{console.error('eror durante el login',error);}
+    );
   }
 
   public prueba(){
