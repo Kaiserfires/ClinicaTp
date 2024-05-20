@@ -10,12 +10,13 @@ export class UsuarioService {
   private APIURL:string="https://clienteApiTp.mdbgo.io";
 
   constructor(public http:HttpClient) {
-    this.listaUsuario=JSON.parse(localStorage.getItem('Usuario') || '[]');
-    this.setLogueado()
-   }
+    this.listaUsuario = JSON.parse(localStorage.getItem('Usuario') || '[]');
+    this.setLogueado();
+    this.listaUsuario = this.listaUsuario.filter(user => user.Nombre!== '');
+  }
   
    public mostrarApi(){
-    return this.http.get(this.APIURL + "pruebajson");
+    return this.http.get(this.APIURL + "/pruebajson");
   }
 
   public loginEnApi(Usuario:User) {
