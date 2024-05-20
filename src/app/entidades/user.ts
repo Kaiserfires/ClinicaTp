@@ -1,10 +1,16 @@
 export interface User {
-    nombre:string;
-    apellido:string;
-    password:string;
-    usuario:string;
+    Nombre:string;
+    Apellido:string;
+    Password:string;
+    Usuario:string;
     mail:string;
     especialidad:string;
     nacimiento : Date;
-    tipo:string;
+    Usuario_tipo:string;
+    avatar?: string;
+    dias_atencion?: string;
+    horario_atencion?: string;
+    foto_especialidad?: string;
+    foto_medic?: string;
+    [key: string]: string | Date | undefined;
 }

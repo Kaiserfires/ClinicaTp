@@ -22,20 +22,20 @@ export class UsuarioService {
     return this.http.post(this.APIURL + "/login",Usuario);
   }
 
-  public serLogueadoXApi(usuario:User){
+  public setLogueadoXApi(usuario:User){
     this.usuarioLogueado = usuario;
   }
 
-  public registra(usuario:User){
+  public registrar(usuario:User){
     return this.http.post(this.APIURL + "/insertar",usuario);
   }
 
-  public usuarioLogueado: User ={nombre:'', apellido:'', password:'', usuario:'', mail:'', especialidad:'', nacimiento :new Date(), tipo:''};
+  public usuarioLogueado: User ={Nombre:'', Apellido:'', Password:'', Usuario:'', mail:'', especialidad:'', nacimiento :new Date(), Usuario_tipo:''};
 
   public listaUsuario: User[]=[];
 
   public estoyLogueado():boolean{
-    return this.usuarioLogueado.nombre !='';
+    return this.usuarioLogueado.Nombre !='';
   }
 
   public setLogueado(){
