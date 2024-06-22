@@ -13,9 +13,9 @@ import { UsuarioService } from '../../servicios/usuario.service';
 })
 export class LoginComponent {
 
-  public usuario:User= {Nombre: '', Password: '', mail: '', Usuario: '', Apellido: '', nacimiento: new Date(),especialidad: '', Usuario_tipo: ''};
+  public usuario:User= {Nombre: '', Password: '', mail: '', Usuario: '', Apellido: '', FecNac: new Date(),especialidad: '', Usuario_tipo:0};
 
-  constructor(private route:Router,private usuarioservices:UsuarioService) {
+  constructor(private route:Router, private usuarioservices:UsuarioService) {
 
     if (usuarioservices.estoyLogueado()) {
       this.route.navigateByUrl('/principal/bienvenida/');
@@ -24,13 +24,27 @@ export class LoginComponent {
 
   public login(){
     this.usuarioservices.loginEnApi(this.usuario).subscribe(
+      /*(response: any)=>{
+        const user = response as User;
+        if (user && user.Usuario) {
+          this.usuarioservices.setLogueadoXApi(user);
+          this.route.navigateByUrl('/principal/bienvenida/');          
+        }else{
+          console.error("Error al loguear, usuario invalido o contraseña incorrectos");
+        }
+      },
+      (error)=>{
+        console.error('error durante el login', error);
+      }-*/
+      
       x=>{
         if ((<User>x).Usuario !=null) {
           this.usuarioservices.setLogueadoXApi(<User>x);
+          location.reload();
           this.route.navigateByUrl('/principal/bienvenida/');
         }
       },
-      error=>{console.error('eror durante el login',error);}
+      error=>{console.error('error durante el login',error);}
     );
   }
 

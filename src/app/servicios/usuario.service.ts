@@ -33,7 +33,7 @@ export class UsuarioService {
     return this.http.post(this.APIURL + "/insertar",usuario);
   }
 
-  public usuarioLogueado: User ={Nombre:'', Apellido:'', Password:'', Usuario:'', mail:'', especialidad:'', nacimiento :new Date(), Usuario_tipo:''};
+  public usuarioLogueado: User ={Nombre:'', Apellido:'', Password:'', Usuario:'', mail:'', especialidad:'', FecNac :new Date(), Usuario_tipo:0};
 
   public listaUsuario: User[]=[];
 
@@ -48,8 +48,26 @@ export class UsuarioService {
   }
 
   public logout() {
-    this.usuarioLogueado = { Nombre: '', Apellido: '', Password: '', Usuario: '', mail: '', especialidad: '', nacimiento: new Date(), Usuario_tipo: '' };
+    this.usuarioLogueado = { Nombre: '', Apellido: '', Password: '', Usuario: '', mail: '', especialidad: '', FecNac: new Date(), Usuario_tipo:0};
     localStorage.removeItem('usuarioLogueado');
   }
 
+  public getUsuarioTipo(): Number {
+    /*switch (this.usuarioLogueado.Usuario_tipo) {
+      case '1':
+          return 'Administrador';
+      case '2':
+        return 'Medico';
+      case '3':
+        return 'Paciente';
+      default:
+        return '';
+    }*/
+    return this.usuarioLogueado.Usuario_tipo;
+  }
+
+  public getFecNac():string{
+    const FecNacTrunc = this.usuarioLogueado.FecNac.toString();
+    return FecNacTrunc.split('T')[0];
+  }
 }

@@ -14,8 +14,9 @@ import { UsuarioService } from '../../servicios/usuario.service';
   styleUrl: './registro.component.scss'
 })
 export class RegistroComponent {
+  
   public usuario:User = {
-    Nombre: '', Password: '', mail: '', Usuario: '', Apellido: '', nacimiento: new Date(),especialidad: '', Usuario_tipo: ''
+    Nombre: '', Password: '', mail: '', Usuario: '', Apellido: '', FecNac: new Date(),especialidad: '', Usuario_tipo:0
   };
   public pasword2:string='';
 

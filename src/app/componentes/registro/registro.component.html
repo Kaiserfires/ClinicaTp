@@ -54,7 +54,7 @@
                </div>
    
                <!-- Additional fields for Patient -->
-               <div *ngIf="usuario.Usuario_tipo == '3'">
+               <div *ngIf="usuario.Usuario_tipo == 3">
                  <div class="form-group">
                    <label for="avatar">Avatar</label>
                    <input type="file" name="avatar" class="form-control" id="avatar" (change)="onFileChange($event, 'avatar')" required>
@@ -62,7 +62,7 @@
                </div>
    
                <!-- Additional fields for Medic -->
-               <div *ngIf="usuario.Usuario_tipo == '2'">
+               <div *ngIf="usuario.Usuario_tipo == 2">
                  <div class="form-group">
                    <label for="especialidad">Especialidad</label>
                    <input type="text" name="especialidad" class="form-control" id="especialidad" [(ngModel)]="usuario.especialidad" placeholder="Enter Especialidad" required>
@@ -86,7 +86,7 @@
                </div>
    
                <!-- Additional fields for Admin -->
-               <div *ngIf="usuario.Usuario_tipo == '1'">
+               <div *ngIf="usuario.Usuario_tipo == 1">
                  <div class="form-group">
                    <label for="avatar">Avatar</label>
                    <input type="file" name="avatar" class="form-control" id="avatar" (change)="onFileChange($event, 'avatar')" required>
