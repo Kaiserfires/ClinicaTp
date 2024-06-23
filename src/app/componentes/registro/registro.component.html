@@ -36,6 +36,10 @@
                  <input type="email" name="email" class="form-control" id="email" [(ngModel)]="usuario.mail" placeholder="Enter email" required>
                </div>
                <div class="form-group">
+                <label for="fecNac">Fecha de Nacimiento</label>
+                <input type="date" name="fecNac" class="form-control" id="fecNac" [(ngModel)]="usuario.FecNac" required>
+              </div>              
+               <div class="form-group">
                  <label for="username">User Name</label>
                  <input type="text" name="username" class="form-control" id="username" [(ngModel)]="usuario.Usuario" placeholder="Enter Username" required>
                </div>
@@ -65,15 +69,25 @@
                <div *ngIf="usuario.Usuario_tipo == 2">
                  <div class="form-group">
                    <label for="especialidad">Especialidad</label>
-                   <input type="text" name="especialidad" class="form-control" id="especialidad" [(ngModel)]="usuario.especialidad" placeholder="Enter Especialidad" required>
+                   <input type="text" name="especialidad" class="form-control" id="especialidad" [(ngModel)]="usuario.Especialidad" placeholder="Enter Especialidad" required>
                  </div>
                  <div class="form-group">
-                   <label for="dias_atencion">Días de Atención</label>
-                   <input type="text" name="dias_atencion" class="form-control" id="dias_atencion" [(ngModel)]="usuario.dias_atencion" placeholder="Enter Días de Atención" required>
+                   <label for="dias_laborales">Días de Laborales</label>
+                   <div *ngFor="let dia of diaSemana; let i=index">
+                    <label>
+                      <input type="checkbox" (change)="booleanoDias(i, $event)" [checked]="diasSeleccionados[i]" />{{ dia }}
+                    </label>
+                   </div>
+                   
+                   <!-- <input type="text" name="dias_laborales" class="form-control" id="dias_laborales" [(ngModel)]="usuario.dias_laborales" placeholder="Enter Días de Atención (Lu-Ma-Mi-Ju-Vi)" required> -->
                  </div>
                  <div class="form-group">
-                   <label for="horario_atencion">Horario de Atención</label>
-                   <input type="text" name="horario_atencion" class="form-control" id="horario_atencion" [(ngModel)]="usuario.horario_atencion" placeholder="Enter Horario de Atención" required>
+                   <label for="horario_atencion">Horario de de entrada</label>
+                   <input type="text" name="horario_atencion" class="form-control" id="horario_entrada" [(ngModel)]="usuario.horario_entrada" placeholder="Enter Horario de Entrada (HH)" required>
+                 </div>
+                 <div class="form-group">
+                  <label for="horario_salida">Horario de horario</label>
+                  <input type="text" name="horario_salida" class="form-control" id="horario_salida" [(ngModel)]="usuario.horario_salida" placeholder="Enter Horario de salida (HH)" required>
                  </div>
                  <div class="form-group">
                    <label for="foto_especialidad">Foto de Especialidad</label>

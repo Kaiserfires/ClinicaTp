@@ -33,7 +33,20 @@ export class UsuarioService {
     return this.http.post(this.APIURL + "/insertar",usuario);
   }
 
-  public usuarioLogueado: User ={Nombre:'', Apellido:'', Password:'', Usuario:'', mail:'', especialidad:'', FecNac :new Date(), Usuario_tipo:0};
+  public usuarioLogueado: User ={
+    Nombre:'', 
+    Apellido:'', 
+    Password:'', 
+    Usuario:'', 
+    mail:'', 
+    Especialidad:'', 
+    FecNac :new Date(), 
+    Usuario_tipo:0,
+    horario_entrada: 0,
+    horario_salida: 0,
+    dias_laborales:'',
+    horario_atencion:'',
+  };
 
   public listaUsuario: User[]=[];
 
@@ -48,7 +61,20 @@ export class UsuarioService {
   }
 
   public logout() {
-    this.usuarioLogueado = { Nombre: '', Apellido: '', Password: '', Usuario: '', mail: '', especialidad: '', FecNac: new Date(), Usuario_tipo:0};
+    this.usuarioLogueado = { 
+      Nombre: '',
+      Apellido: '',
+      Password: '',
+      Usuario: '', 
+      mail: '', 
+      Especialidad: '', 
+      FecNac: new Date(), 
+      Usuario_tipo:0,
+      horario_entrada: 0,
+      horario_salida: 0,
+      dias_laborales:'',
+      horario_atencion:'',
+    };
     localStorage.removeItem('usuarioLogueado');
   }
 

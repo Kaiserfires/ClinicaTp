@@ -13,7 +13,20 @@ import { UsuarioService } from '../../servicios/usuario.service';
 })
 export class LoginComponent {
 
-  public usuario:User= {Nombre: '', Password: '', mail: '', Usuario: '', Apellido: '', FecNac: new Date(),especialidad: '', Usuario_tipo:0};
+  public usuario:User= {
+    Nombre: '', 
+    Password: '', 
+    mail: '', 
+    Usuario: '', 
+    Apellido: '', 
+    FecNac: new Date(), 
+    Especialidad: '', 
+    Usuario_tipo:0,
+    horario_entrada: 0,
+    horario_salida: 0,
+    dias_laborales:'',
+    horario_atencion:'',
+  };
 
   constructor(private route:Router, private usuarioservices:UsuarioService) {
 
