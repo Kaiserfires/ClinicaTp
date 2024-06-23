@@ -51,6 +51,7 @@ export class UsuarioService {
   public listaUsuario: User[]=[];
 
   public estoyLogueado():boolean{
+    this.setLogueado(); //agregado
     return this.usuarioLogueado.Nombre !='';
   }
 
