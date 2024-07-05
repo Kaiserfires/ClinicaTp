@@ -14,18 +14,20 @@ import { UsuarioService } from '../../servicios/usuario.service';
 export class LoginComponent {
 
   public usuario:User= {
-    Nombre: '', 
-    Password: '', 
-    mail: '', 
-    Usuario: '', 
-    Apellido: '', 
-    FecNac: new Date(), 
-    Especialidad: '', 
-    Usuario_tipo:0,
+    Id: 0,
+    Nombre: '',
+    Password: '',
+    mail: '',
+    Usuario: '',
+    Apellido: '',
+    FecNac: new Date(),
+    Especialidad: '',
+    Usuario_tipo: 0,
     horario_entrada: 0,
     horario_salida: 0,
-    dias_laborales:'',
-    horario_atencion:'',
+    dias_laborales: '',
+    horario_atencion: '',
+    estado: false
   };
 
   constructor(private route:Router, private usuarioservices:UsuarioService) {

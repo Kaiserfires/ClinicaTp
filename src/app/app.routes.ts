@@ -5,6 +5,7 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { BienvenidaComponent } from './componentes/bienvenida/bienvenida.component';
 import { ErrorComponent } from './componentes/error/error.component';
 import { usuarioDeslogueadoGuard } from './guard/usuario-logueado.guard';
+import { AdministrarMedicosComponent } from './componentes/administrar-medicos/administrar-medicos.component';
 
 
 export const routes: Routes = [
@@ -12,6 +13,7 @@ export const routes: Routes = [
         children:[
             {path:'login',component:LoginComponent, canActivate:[usuarioDeslogueadoGuard]},//canDeactivate:[usuarioDeslogueadoGuard]
             {path:'registro',component:RegistroComponent,  canActivate:[usuarioDeslogueadoGuard]},//canActivate: [usuarioLogueadoGuard]
+            {path:'administrar-medicos',component:AdministrarMedicosComponent},
             {path:'bienvenida',component:BienvenidaComponent},
             {path:'**',component:LoginComponent}
         ]

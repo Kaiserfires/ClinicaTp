@@ -1,0 +1,19 @@
+/* administrador.component.scss */
+.habilitado {
+    color: green;
+  }
+  
+  .sin-habilitar {
+    color: red;
+  }
+  
+  button.habilitar {
+    background-color: green;
+    color: white;
+  }
+  
+  button.deshabilitar {
+    background-color: red;
+    color: white;
+  }
+  

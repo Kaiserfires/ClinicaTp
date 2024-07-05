@@ -1,1 +1,42 @@
 <p>administrar-medicos works!</p>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Especialidad</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Horario de Entrada</th>
+        <th>Horario de Salida</th>
+        <th>Días Laborales</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medico of medicos">
+        <td>{{ medico.Id }}</td>
+        <td>{{ medico.Nombre }}</td>
+        <td>{{ medico.Apellido }}</td>
+        <td>{{ medico.Especialidad }}</td>
+        <td class="text-center">{{ medico.FecNac | date }}</td>
+        <td class="text-right">{{ medico.horario_entrada }}hs</td>
+        <td class="text-right">{{ medico.horario_salida }}hs</td>
+        <td>{{ convertirDiasLaborales(medico.dias_laborales) }}</td>
+        <td class="text-center">
+          <span [ngClass]="{'habilitado': medico.estado, 'sin-habilitar': !medico.estado}">
+            {{ medico.estado ? 'Habilitado' : 'Sin habilitar' }}
+          </span>
+        </td>
+        <td>
+          <button class="text-center" (click)="cambiarEstado(medico)" [ngClass]="{'habilitar': !medico.estado, 'deshabilitar': medico.estado}">
+            {{ medico.estado ? 'Deshabilitar?' : 'Habilitar?' }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

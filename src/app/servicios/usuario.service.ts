@@ -10,7 +10,7 @@ export class UsuarioService {
 
   private APIURL:string="https://clienteApiTp.mdbgo.io";
 
-  constructor(public http:HttpClient) {
+  constructor(private http:HttpClient) { //cambie a privado para probar
     this.listaUsuario = JSON.parse(localStorage.getItem('Usuario') || '[]');
     this.setLogueado();
     this.listaUsuario = this.listaUsuario.filter(user => user.Nombre!== '');
@@ -34,6 +34,7 @@ export class UsuarioService {
   }
 
   public usuarioLogueado: User ={
+    Id:0,
     Nombre:'', 
     Apellido:'', 
     Password:'', 
@@ -46,6 +47,7 @@ export class UsuarioService {
     horario_salida: 0,
     dias_laborales:'',
     horario_atencion:'',
+    estado: false,
   };
 
   public listaUsuario: User[]=[];
@@ -63,6 +65,7 @@ export class UsuarioService {
 
   public logout() {
     this.usuarioLogueado = { 
+      Id:0,
       Nombre: '',
       Apellido: '',
       Password: '',
@@ -75,6 +78,7 @@ export class UsuarioService {
       horario_salida: 0,
       dias_laborales:'',
       horario_atencion:'',
+      estado: false,
     };
     localStorage.removeItem('usuarioLogueado');
   }
@@ -97,4 +101,14 @@ export class UsuarioService {
     const FecNacTrunc = this.usuarioLogueado.FecNac.toString();
     return FecNacTrunc.split('T')[0];
   }
+
+  obtenerMedicos(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.APIURL}/medicos/`);
+  }
+
+  cambiarEstadoMedico(id: number, estado: boolean): Observable<any> {
+    return this.http.put(`${this.APIURL}/usuarios/${id}/estado`, { habilitado: estado });
+  }
+
+
 }

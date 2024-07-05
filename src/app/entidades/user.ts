@@ -1,4 +1,5 @@
 export interface User {
+    Id:number;
     Nombre:string;
     Apellido:string;
     Password:string;
@@ -14,5 +15,6 @@ export interface User {
     horario_atencion?: string;
     foto_especialidad?: string;
     foto_medic?: string;
-    [key: string]: string | Date | undefined | Number;
+    estado: boolean;
+    [key: string]: string | Date | undefined | Number | boolean ;
 }
