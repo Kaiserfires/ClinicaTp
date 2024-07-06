@@ -107,7 +107,7 @@ export class UsuarioService {
   }
 
   cambiarEstadoMedico(id: number, estado: boolean): Observable<any> {
-    return this.http.put(`${this.APIURL}/usuarios/${id}/estado`, { habilitado: estado });
+    return this.http.put(`${this.APIURL}/Usuario/${id}/estado`, { habilitado: estado });
   }
 
 
