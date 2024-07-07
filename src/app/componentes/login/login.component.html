@@ -22,6 +22,9 @@
                               <label for="password">Password</label>
                               <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su contraseña" [(ngModel)]="usuario.Password">
                            </div>
+                           <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+                              {{errorMessage}}
+                           </div>
                            <div class="col-md-12 text-center ">
                               <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
                            </div>

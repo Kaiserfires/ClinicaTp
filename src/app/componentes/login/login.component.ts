@@ -3,11 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { User } from '../../entidades/user';
 import { UsuarioService } from '../../servicios/usuario.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule,RouterModule],
+  imports: [FormsModule,RouterModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -29,6 +30,7 @@ export class LoginComponent {
     horario_atencion: '',
     estado: false
   };
+  public errorMessage:string='';
 
   constructor(private route:Router, private usuarioservices:UsuarioService) {
 
@@ -39,6 +41,24 @@ export class LoginComponent {
 
   public login(){
     this.usuarioservices.loginEnApi(this.usuario).subscribe(
+      x => {
+        const user = <User>x;
+        if (user && user.Usuario) {
+          if (user.Usuario_tipo === 2 && !user.estado) {
+            this.errorMessage = "Usted todavía no está autorizado.";
+          } else {
+            this.usuarioservices.setLogueadoXApi(user);
+            location.reload();
+            this.route.navigateByUrl('/principal/bienvenida/');
+          }
+        } else {
+          this.errorMessage = "Usuario inválido o contraseña incorrectos.";
+        }
+      },
+      error => {
+        console.error('Error durante el login', error);
+        this.errorMessage = "Error durante el login. Por favor, intente nuevamente.";
+      }
       /*(response: any)=>{
         const user = response as User;
         if (user && user.Usuario) {
@@ -51,7 +71,7 @@ export class LoginComponent {
       (error)=>{
         console.error('error durante el login', error);
       }-*/
-      
+      /*
       x=>{
         if ((<User>x).Usuario !=null) {
           this.usuarioservices.setLogueadoXApi(<User>x);
@@ -59,7 +79,7 @@ export class LoginComponent {
           this.route.navigateByUrl('/principal/bienvenida/');
         }
       },
-      error=>{console.error('error durante el login',error);}
+      error=>{console.error('error durante el login',error);}*/
     );
   }
 
