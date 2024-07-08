@@ -2,16 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../servicios/usuario.service';
 import { User } from '../../entidades/user';
 import { CommonModule } from '@angular/common';
+import { FiltroPipe } from '../../servicios/filtro.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-administrar-medicos',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FiltroPipe,FormsModule],
   templateUrl: './administrar-medicos.component.html',
   styleUrl: './administrar-medicos.component.scss'
 })
 export class AdministrarMedicosComponent implements OnInit {
   medicos:User[]=[];
+  searchText:string='';
 
   constructor(private usuarioService:UsuarioService) { }
     

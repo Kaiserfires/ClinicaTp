@@ -1,5 +1,7 @@
 <p>administrar-medicos works!</p>
-
+<div>
+  <input type="text" placeholder="buscar medico..." [(ngModel)]="searchText"/>
+</div> 
 <div>
   <table>
     <thead>
@@ -17,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let medico of medicos">
+      <tr *ngFor="let medico of medicos | filtro:searchText">
         <td>{{ medico.Id }}</td>
         <td>{{ medico.Nombre }}</td>
         <td>{{ medico.Apellido }}</td>
