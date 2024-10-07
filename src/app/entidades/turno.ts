@@ -1,8 +1,9 @@
 export interface Turno {
-     id: number;
-     pacienteId: number;
-     medicoId: number;
-     fecha: string;
-     hora: string;
-     estado: string;
+    
+     Paciente_id: number;
+     Medico_id: number;
+     Fecha: string;//Date;
+     Hora: string;
+     Estado: string;
+     [key: string]: string | Date |Number ;
 }

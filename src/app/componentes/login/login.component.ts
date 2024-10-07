@@ -35,13 +35,13 @@ export class LoginComponent {
   constructor(private route:Router, private usuarioservices:UsuarioService) {
 
     if (usuarioservices.estoyLogueado()) {
-      this.route.navigateByUrl('/principal/bienvenida/');
+      this.route.navigateByUrl('/principal/bienvenida');
     }
   }
 
   public login(){
-    this.usuarioservices.loginEnApi(this.usuario).subscribe(
-      x => {
+    this.usuarioservices.loginEnApi(this.usuario).subscribe({
+      next: (x) => {
         const user = <User>x;
         if (user && user.Usuario) {
           if (user.Usuario_tipo === 2 && !user.estado) {
@@ -49,16 +49,16 @@ export class LoginComponent {
           } else {
             this.usuarioservices.setLogueadoXApi(user);
             location.reload();
-            this.route.navigateByUrl('/principal/bienvenida/');
+            this.route.navigateByUrl('/principal/bienvenida');
           }
         } else {
           this.errorMessage = "Usuario inválido o contraseña incorrectos.";
         }
       },
-      error => {
+      error: (error) => {
         console.error('Error durante el login', error);
         this.errorMessage = "Error durante el login. Por favor, intente nuevamente.";
-      }
+      }}
       /*(response: any)=>{
         const user = response as User;
         if (user && user.Usuario) {

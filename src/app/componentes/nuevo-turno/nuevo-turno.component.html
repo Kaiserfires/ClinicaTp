@@ -37,8 +37,8 @@
       <div class="col">
         <label for="medico"><strong>Seleccionar médico:</strong></label>
         <select id="medico" class="form-control" [(ngModel)]="selectedMedico" (change)="onChangeMedico()">
-          <option *ngFor="let medico of medicos" [value]="medico.id">
-            {{ medico.nombre }}
+          <option *ngFor="let medico of medicos" [value]="medico.Id">
+            {{ medico.Nombre }}
           </option>
         </select>
       </div>
