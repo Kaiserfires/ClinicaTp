@@ -31,11 +31,17 @@ export class TurnoservService  {
     return this.http.get<any[]>(`${this.apiUrl}/medicos/especialidad/${especialidadId}`);
   }
 
-  obtenerDisponibilidadMedico(medicoId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/medicos/${medicoId}/disponibilidad`);
+  obtenerDisponibilidadMedico(medicoId: number, fecha: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/medicos/${medicoId}/disponibilidad/${fecha}`);
   }
 
   crearTurno(turnoData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/turnos/`, turnoData);
   }
+
+  obtenerDiasLaborales(medicoId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/medicos/${medicoId}/dias-laborales`);
+  }
+
+  
 }

@@ -4,6 +4,7 @@ import { User } from '../../entidades/user';
 import { CommonModule } from '@angular/common';
 import { FiltroPipe } from '../../servicios/filtro.pipe';
 import { FormsModule } from '@angular/forms';
+import { jsPDF } from 'jspdf';
 
 @Component({
   selector: 'app-administrar-medicos',
@@ -15,6 +16,25 @@ import { FormsModule } from '@angular/forms';
 export class AdministrarMedicosComponent implements OnInit {
   medicos:User[]=[];
   searchText:string='';
+
+  generarPDF() {
+    const doc = new jsPDF();
+    let y = 10;
+
+    doc.setFontSize(18);
+    doc.text('Listado de Médicos Habilitados', 10, y);
+    y += 10;
+
+    const medicosHabilitados = this.medicos.filter(m => m.estado); // Filtrar habilitados
+
+    doc.setFontSize(12);
+    medicosHabilitados.forEach((medico) => {
+      doc.text(`ID: ${medico.Id} - ${medico.Nombre} ${medico.Apellido}`, 10, y);
+      y += 10;
+    });
+
+    doc.save('medicos_habilitados.pdf'); // Descargar el PDF
+  }
 
   constructor(private usuarioService:UsuarioService) { }
     

@@ -44,6 +44,18 @@
       </div>
     </div>
   
+     <!-- Mostrar días laborales del médico seleccionado -->
+    <div class="row mt-3" *ngIf="selectedMedico">
+      <div class="col">
+        <label for="dias"><strong>Seleccionar día del turno:</strong></label>
+        <select id="dias" class="form-control" [(ngModel)]="selectedDiaLaboral" (change)="onChangeDia()">
+          <option *ngFor="let dia of diasLaborales" [value]="dia.fecha">
+             {{dia.nombreDia }} - {{ dia.fecha }}
+          </option>
+        </select>
+      </div>
+    </div>
+
     <!-- Mostrar horarios de disponibilidad del médico seleccionado -->
     <div class="row mt-3" *ngIf="selectedMedico">
       <div class="col">
@@ -63,6 +75,13 @@
       </div>
     </div>
   </div>
+  
+  <!-- mensaje de exito-->
+   <div class="row mt-3" *ngIf="mensajeExito">
+    <div class="col">
+      <p class="text-success">{{ mensajeExito}}</p>
+    </div>
+   </div>
   
   <!-- Include Bootstrap JS, Popper.js, and jQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
