@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../entidades/user';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Turno } from '../entidades/turno';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { Observable } from 'rxjs';
 export class UsuarioService {
 
   private APIURL:string="https://clienteApiTp.mdbgo.io";
+  obtenerTurnosPorMedico: any;
 
   constructor(private http:HttpClient) { //cambie a privado para probar
     this.listaUsuario = JSON.parse(localStorage.getItem('Usuario') || '[]');
@@ -110,5 +112,5 @@ export class UsuarioService {
     return this.http.put(`${this.APIURL}/Usuario/${id}/estado`, { habilitado: estado });
   }
 
-
+  
 }

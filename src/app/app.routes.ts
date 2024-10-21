@@ -7,6 +7,7 @@ import { ErrorComponent } from './componentes/error/error.component';
 import { usuarioDeslogueadoGuard } from './guard/usuario-logueado.guard';
 import { AdministrarMedicosComponent } from './componentes/administrar-medicos/administrar-medicos.component';
 import { NuevoTurnoComponent } from './componentes/nuevo-turno/nuevo-turno.component';
+import { AceptarTurnosComponent } from './componentes/aceptar-turnos/aceptar-turnos.component';
 
 
 export const routes: Routes = [
@@ -17,6 +18,7 @@ export const routes: Routes = [
             {path:'administrar-medicos',component:AdministrarMedicosComponent},
             {path:'nuevo-turno',component:NuevoTurnoComponent},
             {path:'bienvenida',component:BienvenidaComponent},
+            {path:'aceptar-turnos',component:AceptarTurnosComponent},
             {path:'**',component:LoginComponent}
         ]
     },

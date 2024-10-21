@@ -1,1 +1,47 @@
-<p>aceptar-turnos works!</p>
+<div class="container mt-4">
+    <h2>Aceptar Turnos Médicos</h2>
+  
+    <!-- Disponibilidad del Médico -->
+    <div class="mb-4">
+      <h5>Días Laborales: {{ diasLaborales.join(', ') }}</h5> <!---->
+      <p>Horario: {{ horarios }}</p>
+    </div>
+  
+    <!-- Tabla de Turnos Pendientes -->
+    <h4>Turnos Pendientes</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID Paciente</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let turno of turnos">
+          <td>{{ turno.Paciente_id }}</td>
+          <td>{{ turno.Fecha }}</td>
+          <td>{{ turno.Hora }}</td>
+          <td>
+            <button class="btn btn-success btn-sm" (click)="actualizarEstadoTurno(turno, 'Aceptado')">
+              Aceptar
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="actualizarEstadoTurno(turno, 'Rechazado')">
+              Rechazar
+            </button>
+            <button class="btn btn-warning btn-sm" (click)="actualizarEstadoTurno(turno, 'Finalizado')">
+              Finalizar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Reseña del Paciente -->
+    <div class="mt-4">
+      <h5>Escribir Reseña del Paciente</h5>
+      <textarea class="form-control mb-2" rows="3" [(ngModel)]="resena"></textarea>
+      <button class="btn btn-info" (click)="guardarResena()">Guardar Reseña</button>
+    </div>
+  </div>

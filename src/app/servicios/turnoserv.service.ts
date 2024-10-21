@@ -19,9 +19,9 @@ export class TurnoservService  {
     return this.http.get<Turno[]>(`${this.apiUrl}/turnos`);
   }
 
-  obtenerTurnosPorMedico(medicoId: number): Observable<Turno[]> {
+  /*obtenerTurnosPorMedico(medicoId: number): Observable<Turno[]> {
     return this.http.get<Turno[]>(`${this.apiUrl}/medicos/${medicoId}/turnos`);
-  }
+  }*/
 
   obtenerEspecialidades(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/especialidades`);
@@ -43,5 +43,12 @@ export class TurnoservService  {
     return this.http.get<any[]>(`${this.apiUrl}/medicos/${medicoId}/dias-laborales`);
   }
 
+  SactualizarEstadoTurno(id: number, estado: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/turno/estado/${id}`, { estado });
+  }
   
+  obtenerTurnosPorMedico(medicoId: number): Observable<Turno[]> {
+    const url = `${this.apiUrl}/medicos/${medicoId}/turnos`;
+    return this.http.get<Turno[]>(url);
+  }
 }

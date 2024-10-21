@@ -19,21 +19,33 @@ export class AdministrarMedicosComponent implements OnInit {
 
   generarPDF() {
     const doc = new jsPDF();
-    let y = 10;
+    let y = 30;
+    var img= new Image();
+
+    img.src='src/favicon.ico';
+    img.onload=()=>{
+      doc.addImage(img,'ICO',10,10,20,20);
+    }
+    
+    //doc.addImage(this.faviconBase64, 'ICO', 10, 10, 20, 20);
 
     doc.setFontSize(18);
-    doc.text('Listado de Médicos Habilitados', 10, y);
-    y += 10;
+    doc.text('Nomina de Médicos Especialistas Habilitados', 70, 20);
+    y += 20;// Ajustar el espacio
 
+    //10, y); y += 10;
+
+    // Filtrar médicos habilitados
     const medicosHabilitados = this.medicos.filter(m => m.estado); // Filtrar habilitados
 
     doc.setFontSize(12);
     medicosHabilitados.forEach((medico) => {
       doc.text(`ID: ${medico.Id} - ${medico.Nombre} ${medico.Apellido}`, 10, y);
+      doc.text(`Especialidad: ${medico.Especialidad}`, 100, y);
       y += 10;
     });
 
-    doc.save('medicos_habilitados.pdf'); // Descargar el PDF
+    doc.save('nomina_especialistas.pdf'); // Descargar el PDF
   }
 
   constructor(private usuarioService:UsuarioService) { }

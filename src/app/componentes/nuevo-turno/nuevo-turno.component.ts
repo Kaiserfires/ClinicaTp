@@ -16,6 +16,7 @@ import { ArrayType } from '@angular/compiler';
   styleUrl: './nuevo-turno.component.scss'
 })
 export class NuevoTurnoComponent implements OnInit {
+  IdTurno:number=0;
   userID: number = 0;
   userName: string = '';
   especialidades:  string[]=[];
@@ -118,6 +119,7 @@ export class NuevoTurnoComponent implements OnInit {
     
     // Cuando el usuario confirma el turno, enviar la solicitud al backend
     const turnoData: Turno = { 
+      Id_Turno: 0,
       // Este campo se generará automáticamente en la base de datos
       Paciente_id: this.userID,
       Medico_id: this.selectedMedico, // Convertir a número
