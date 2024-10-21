@@ -50,11 +50,11 @@ usuarioLogueado: User[]=[];
     }
 
     const diasMap: { [key: string]: string } = {
-      '1': 'Lu',
-      '2': 'Ma',
-      '3': 'Mi',
-      '4': 'Ju',
-      '5': 'Vi'
+      '1': 'Lunes',
+      '2': 'Marter',
+      '3': 'Miercoles',
+      '4': 'Jueves',
+      '5': 'Viernes'
     };
 
     return dias.split(',').map(dia => diasMap[dia.trim()]).join(', ');
