@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../servicios/usuario.service';
-import { User } from '../../entidades/user';
 import { FormsModule } from '@angular/forms';
-import { NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -24,15 +22,16 @@ export class CalificarMedicoComponent implements OnInit {
     this.pacienteId = JSON.parse(localStorage.getItem('usuarioLogueado')!).Id;
     console.log(this.pacienteId, "este es el id");
     this.cargarMedicosCalificados();
+
   }
 
   cargarMedicosCalificados() {
     this.usuarioService.obtenerMedicosCalificados(this.pacienteId).subscribe({
       next: (data) => {
+        console.log(data);
         this.medicos = data;
-      },
-      error: (err) => {
-        console.error('Error al cargar los médicos:', err);
+        
+        console.log(this.medicos);
       }
     });
   }
