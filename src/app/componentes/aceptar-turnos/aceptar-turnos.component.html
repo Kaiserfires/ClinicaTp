@@ -13,16 +13,22 @@
       <thead>
         <tr>
           <th>ID Paciente</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
           <th>Fecha</th>
           <th>Hora</th>
+          <th>estado</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let turno of turnos">
           <td>{{ turno.Paciente_id }}</td>
-          <td>{{ turno.Fecha }}</td>
+          <td>Nombre</td>
+          <td>Apellido</td>
+          <td>{{ turno.Fecha.split('T')[0] }}</td>
           <td>{{ turno.Hora }}</td>
+          <td>{{ turno.Estado }}</td>
           <td>
             <button class="btn btn-success btn-sm" (click)="actualizarEstadoTurno(turno, 'Aceptado')">
               Aceptar
@@ -40,8 +46,15 @@
   
     <!-- Reseña del Paciente -->
     <div class="mt-4">
+      <h5>Seleccionar Paciente</h5>
+      <select class="form-control mb-2" ><!--[(ngModel)]="pacienteSeleccionado"-->
+        <option *ngFor="let paciente of pacientes" [value]="paciente.Id">
+          {{ paciente.Nombre }} {{ paciente.Apellido }}
+        </option>
+      </select>
+    
       <h5>Escribir Reseña del Paciente</h5>
       <textarea class="form-control mb-2" rows="3" [(ngModel)]="resena"></textarea>
       <button class="btn btn-info" (click)="guardarResena()">Guardar Reseña</button>
     </div>
-  </div>
+

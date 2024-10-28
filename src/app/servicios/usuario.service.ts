@@ -112,5 +112,15 @@ export class UsuarioService {
     return this.http.put(`${this.APIURL}/Usuario/${id}/estado`, { habilitado: estado });
   }
 
-  
+  obtenerNombApellPaciente(Id:number):Observable<any[]>{
+    return this.http.get<any[]>(`${this.APIURL}/Usuario/${Id}`)
+  }
+
+  obtenerMedicosCalificados(pacienteId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.APIURL}/Calificaciones/MedicosCalificados/${pacienteId}`);
+  }
+
+  enviarCalificacion(calificacion:{Paciente_Id:number; Medico_Id:number; Calificacion:number}):Observable<any>{
+    return this.http.post(`${this.APIURL}/Califocaciones/Guardar`, calificacion);
+  }
 }

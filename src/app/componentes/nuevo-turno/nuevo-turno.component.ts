@@ -5,7 +5,6 @@ import { RouterModule, Router } from '@angular/router';
 import { TurnoservService } from '../../servicios/turnoserv.service';
 import { UsuarioService } from '../../servicios/usuario.service';
 import { Turno } from '../../entidades/turno';
-import { ArrayType } from '@angular/compiler';
 
 
 @Component({

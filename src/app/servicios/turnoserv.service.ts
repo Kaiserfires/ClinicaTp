@@ -44,11 +44,12 @@ export class TurnoservService  {
   }
 
   SactualizarEstadoTurno(id: number, estado: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/turno/estado/${id}`, { estado });
+    return this.http.put(`${this.apiUrl}/turno/${id}/estado/`, { estado });
   }
   
   obtenerTurnosPorMedico(medicoId: number): Observable<Turno[]> {
     const url = `${this.apiUrl}/medicos/${medicoId}/turnos`;
     return this.http.get<Turno[]>(url);
   }
+  
 }

@@ -23,6 +23,7 @@ export class AceptarTurnosComponent implements OnInit {
   resena: string = '';
   medicoId: number = 0;
 usuarioLogueado: User[]=[];
+  pacientes:User[]=[];
 
   constructor(private turnoService: TurnoservService, private usuarioService: UsuarioService) {}
 
@@ -80,20 +81,46 @@ usuarioLogueado: User[]=[];
 
     console.log(this.medicoId);   
     
-    this.usuarioService.obtenerTurnosPorMedico(this.medicoId).subscribe(
-      (data: Turno[]) => {
+    this.turnoService.obtenerTurnosPorMedico(this.medicoId).subscribe({
+      next: (data) => {
+        
+        this.turnos = data /*.filter((t: Turno) => t.Estado === 'Pendiente')*/;
+        console.log(this.turnos);
+      }}
+      /*
+      data: Turno[] => {
+        console.log(data);
         this.turnos = data.filter((t: Turno) => t.Estado === 'Pendiente');
       },
       (error: any) => {
         console.error('Error al cargar turnos:', error);
-      }
+      }*/
     );
   }
+
+  /*nombreApellido(turno: Turno):void{
+    var Id =0;
+    var nombre='';
+    var apellido='';
+    Id= turno.Paciente_id;
+
+    this.usuarioService.obtenerNombApellPaciente(Id).subscribe({
+      next:(data)=>{
+      nombre=`${data[0].Nombre}`;
+      //apellido=`${data[0].Apellido}`;
+      },
+      error: (err) =>{
+        console.error('error al obtener nombre del paciente', err);
+      }
+      
+    });
+    
+  }*/
 
   actualizarEstadoTurno(turno: Turno, estado: string): void {
     turno.Estado = estado;
 
-    this.turnoService.SactualizarEstadoTurno(turno.Id_Turno, 'Aceptado').subscribe({
+    this.turnoService.SactualizarEstadoTurno(turno.Id_Turno, turno.Estado).subscribe({
     next: () => alert('Estado del turno actualizado correctamente.'),
     error: (err) => console.error('Error al actualizar el estado:', err)
   });
@@ -109,4 +136,6 @@ usuarioLogueado: User[]=[];
     console.log('Reseña guardada:', this.resena);
     // Aquí puedes enviar la reseña al backend si es necesario.
   }
+  
+ 
 }

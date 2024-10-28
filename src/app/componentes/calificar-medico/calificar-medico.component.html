@@ -1,0 +1,28 @@
+<div class="container mt-4">
+    <h2>Médicos con Turnos Finalizados</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Especialización</th>
+          <th>Fecha del Turno</th>
+          <th>Calificar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medico of medicos">
+          <td>{{ medico.Nombre }}</td>
+          <td>{{ medico.Apellido }}</td>
+          <td>{{ medico.Nombre_Especialidad }}</td>
+          <td>{{ medico.Fecha | date:'dd/MM/yyyy' }} </td>
+          <td>
+            <select [(ngModel)]="medico.calificacion" class="form-select" aria-label="Calificación">
+              <option *ngFor="let i of [1, 2, 3, 4, 5]" [value]="i">{{ i }}</option>
+            </select>
+            <button class="btn btn-primary mt-2" (click)="enviarCalificacion(medico)" [disabled]="medico.enviado">Enviar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
