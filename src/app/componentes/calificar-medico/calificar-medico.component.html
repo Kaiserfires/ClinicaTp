@@ -14,7 +14,7 @@
         <tr *ngFor="let medico of medicos">
           <td>{{ medico.Nombre }}</td>
           <td>{{ medico.Apellido }}</td>
-          <td>{{ medico.Nombre_Especialidad }}</td>
+          <td>{{ medico.Especialidad }}</td>
           <td>{{ medico.Fecha | date:'dd/MM/yyyy' }} </td>
           <td>
             <select [(ngModel)]="medico.calificacion" class="form-select" aria-label="Calificación">

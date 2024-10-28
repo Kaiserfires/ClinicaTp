@@ -30,18 +30,18 @@ export class CalificarMedicoComponent implements OnInit {
       next: (data) => {
         console.log(data);
         this.medicos = data;
-        
         console.log(this.medicos);
       }
     });
   }
 
   enviarCalificacion(medico:any){
-    const calificacion ={
+    var calificacion ={
       Paciente_Id: this.pacienteId,
-      Medico_Id: medico.Id,
+      Medico_Id: medico.Medico_Id,
       Calificacion: medico.calificacion
     };
+    console.log(medico.Medico_Id);
     this.usuarioService.enviarCalificacion(calificacion).subscribe({
       next:() =>{
         medico.enviado = true;

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../entidades/user';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Turno } from '../entidades/turno';
+
 
 @Injectable({
   providedIn: 'root'

@@ -21,6 +21,9 @@
           <a class="nav-link" aria-current="page" [routerLink]="'/nuevo-turno'">Nuevo Turno</a>
         </li>
         <li class="nav-item" *ngIf="estaLogueado && usuarioTipo === 3">
+          <a class="nav-link" aria-current="page" [routerLink]="'/principal/calificar-medico'">Mis Turnos</a>
+        </li>
+        <li class="nav-item" *ngIf="estaLogueado && usuarioTipo === 3">
           <a class="nav-link" aria-current="page" [routerLink]="'/historial'">Historial</a>
         </li>
         <li class="nav-item" *ngIf="estaLogueado && usuarioTipo === 3">
